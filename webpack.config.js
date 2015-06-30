@@ -11,12 +11,13 @@ module.exports = {
         loader: 'react-hot!babel'
       },
       {
-        test: /\.css$/,
-        loader: 'style!css'
+        test: /\.sass$/,
+        loader: 'style!css!sass?sourceMap&indentedSyntax'
       }
     ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
-  }
+  },
+  plugins: []
 };

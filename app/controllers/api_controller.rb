@@ -3,6 +3,10 @@ class ApiController < ActionController::Metal
   include ActionController::RackDelegation
   include ActionController::StrongParameters
 
+  def preflight
+    render nothing: true
+  end
+
   private
 
   def render(options={})

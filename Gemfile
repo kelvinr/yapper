@@ -7,3 +7,7 @@ gem 'pg'
 
 gem 'oj'
 gem 'oj_mimic_json'
+
+group :development do
+  gem 'rack-cors', :require => 'rack/cors'
+end

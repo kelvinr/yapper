@@ -4,8 +4,8 @@
   "description": "An app for chatterboxs'",
   "main": "client/main.jsx",
   "scripts": {
-    "devserve": "webpack-dev-server -d --config webpack.config.js --content-base public/ --progress --colors",
-    "devbuild": "webpack -d --config webpack.config.js --profile --profile --colors"
+    "devserve": "webpack-dev-server -d --config webpack.dev.config.js --content-base public/ --progress --colors",
+    "devbuild": "webpack -d --config webpack.dev.config.js --profile --profile --colors"
   },
   "author": "Kelvin R",
   "license": "ISC",
@@ -17,9 +17,11 @@
     "babel-loader": "^5.2.2",
     "css-loader": "^0.15.1",
     "node-libs-browser": "^0.5.2",
+    "node-sass": "^3.2.0",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "reqwest": "^1.1.5",
+    "sass-loader": "^1.0.2",
     "style-loader": "^0.12.3",
     "webpack": "^1.10.0"
   },
