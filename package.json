@@ -1,0 +1,29 @@
+{
+  "name": "yapper",
+  "version": "0.0.1",
+  "description": "An app for chatterboxs'",
+  "main": "client/main.jsx",
+  "scripts": {
+    "devserve": "webpack-dev-server -d --config webpack.config.js --content-base public/ --progress --colors",
+    "devbuild": "webpack -d --config webpack.config.js --profile --profile --colors"
+  },
+  "author": "Kelvin R",
+  "license": "ISC",
+  "engines": {
+    "node": "0.12.x"
+  },
+  "dependencies": {
+    "babel-core": "^5.6.15",
+    "babel-loader": "^5.2.2",
+    "css-loader": "^0.15.1",
+    "node-libs-browser": "^0.5.2",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "reqwest": "^1.1.5",
+    "style-loader": "^0.12.3",
+    "webpack": "^1.10.0"
+  },
+  "devDependencies": {
+    "react-hot-loader": "^1.2.7"
+  }
+}
