@@ -17,15 +17,15 @@ export default class App extends React.Component {
   }
   componentWillMount() {
     let jwt = new Uri(location.search).getQueryParamValue('jwt');
-    if (!!jwt) {sessionStorage.getItem('jwt', jwt);}
+    if (!!jwt) {sessionStorage.setItem('jwt', jwt);}
   }
   componentDidMount() {
     if (!!sessionStorage.getItem('jwt')) {this.currentUserFromAPI();}
   }
   currentUserFromAPI() {
-    this.readFromAPI(this.props.origin + '/current_user', user =>
+    this.readFromAPI(this.state.origin + '/current_user', function(user) {
       this.setState({signedIn: true, currentUser: user})
-    );
+    }.bind(this));
   }
   handleMenuClick() {
     this.setState({showMenu: !this.state.showMenu});
@@ -36,6 +36,22 @@ export default class App extends React.Component {
       type: 'json',
       method: 'GET',
       contentType: 'application/json',
+      headers: {'Authorization': sessionStorage.getItem('jwt')},
+      success: successFunction,
+      error: error => {
+        console.error(url, error['response']);
+        location = '/';
+      }
+    });
+  }
+  writeToAPI(method, url, data, successFunction) {
+    Reqwest({
+      url: url,
+      data: data,
+      type: 'json',
+      method: method,
+      contentType: 'application/json',
+      headers: {'Authorization': sessionStorage.getItem('jwt')},
       success: successFunction,
       error: error => {
         console.error(url, error['response']);
@@ -50,7 +66,7 @@ export default class App extends React.Component {
       <div id="app" className={menu}>
         <Menu origin={this.state.origin} sendMenuClick={this.handleMenuClick} signedIn={this.state.signedIn} />
         <div id="content">
-          <RouteHandler origin={this.state.origin} readFromAPI={this.readFromAPI} signedIn={this.state.signedIn}/>
+          <RouteHandler origin={this.state.origin} readFromAPI={this.readFromAPI} writeToAPI={this.writeToAPI} currentUser={this.state.currentUser} signedIn={this.state.signedIn}/>
         </div>
       </div>
     );

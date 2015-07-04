@@ -1,6 +1,6 @@
-require('./css/app.css');
-require('./css/menu.css');
-require('./css/blabs.css');
+require('./css/app.sass');
+require('./css/menu.sass');
+require('./css/blabs.sass');
 
 import React from 'react';
 import Router from 'react-router';

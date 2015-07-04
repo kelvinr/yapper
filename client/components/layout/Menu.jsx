@@ -9,7 +9,7 @@ export default class Menu extends React.Component {
   }
   render() {
     if (this.props.signedIn) {
-      var signingLink = <li><span onClick={this.handleSignOutLink}>Sign Out</span></li>;
+      var signingLink = <li><span onClick={this.handleSignOutLink.bind(this)}>Sign Out</span></li>;
     } else {
       var signingLink = <li><a href={this.props.origin + '/request_token'}>Sign In</a></li>;
     }
