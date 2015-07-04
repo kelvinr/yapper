@@ -4,6 +4,8 @@ ruby '2.2.2'
 gem 'rails', '4.2.2'
 gem 'puma'
 gem 'pg'
+gem 'oauth'
+gem 'jwt'
 
 gem 'oj'
 gem 'oj_mimic_json'

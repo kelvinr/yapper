@@ -11,8 +11,8 @@ module.exports = {
         loader: 'react-hot!babel'
       },
       {
-        test: /\.sass$/,
-        loader: 'style!css!sass?sourceMap&indentedSyntax'
+        test: /\.css$/,
+        loader: 'style!css?sourceMap'
       }
     ]
   },

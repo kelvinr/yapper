@@ -27,4 +27,7 @@ Rails.application.configure do
   CREDS = YAML.load_file('/home/kelvin/Creds/yapper_api.yml')
   ENV['TWITTER_CONSUMER_KEY'] = CREDS['TCK']
   ENV['TWITTER_CONSUMER_SECRET'] = CREDS['TCS']
+
+  ENV['ORIGIN'] = 'http://localhost:8080'
+  ENV['OAUTH_CALLBACK'] = 'http://127.0.0.1:3000/access_token'
 end

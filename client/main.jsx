@@ -1,8 +1,13 @@
-require('./css/app.sass');
-require('./css/menu.sass');
-require('./css/blabs.sass');
+require('./css/app.css');
+require('./css/menu.css');
+require('./css/blabs.css');
 
 import React from 'react';
-import App from './components/layout/App';
+import Router from 'react-router';
+import routes from './config/routes';
 
-React.render(<App />, document.body);
+Router.run(routes, Router.HistoryLocation, function(Handler) {
+  React.render(<Handler/>, document.body);
+});
+
+
