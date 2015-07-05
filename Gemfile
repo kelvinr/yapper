@@ -6,11 +6,13 @@ gem 'puma'
 gem 'pg'
 gem 'oauth'
 gem 'jwt'
-gem 'pry'
 
 gem 'oj'
-gem 'oj_mimic_json'
 
 group :development do
   gem 'rack-cors', :require => 'rack/cors'
+end
+
+group :production do
+  gem 'rails_12factor'
 end

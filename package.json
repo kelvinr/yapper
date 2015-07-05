@@ -5,7 +5,10 @@
   "main": "client/main.jsx",
   "scripts": {
     "devserve": "webpack-dev-server -d --config webpack.dev.config.js --content-base public/ --progress --colors",
-    "devbuild": "webpack -d --config webpack.dev.config.js --profile --profile --colors"
+    "devbuild": "webpack -d --config webpack.dev.config.js --profile --progress --colors",
+    "probuild": "webpack -p --config webpack.pro.config.js --profile --progress --colors",
+    "postinstall": "npm run probuild && npm run success",
+    "success": "echo build successfully completed"
   },
   "author": "Kelvin R",
   "license": "ISC",
