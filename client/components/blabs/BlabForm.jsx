@@ -10,6 +10,7 @@ export default class BlabForm extends React.Component {
     let content = this.refs.content.getDOMNode().value.trim();
     if (!content) {return;}
     if (this.props.signedIn) {
+      this.props.optimisticUpdate({id: 'placeholder', content: content, handle: this.props.userHandle})
       this.props.writeBlabToAPI(JSON.stringify({blab: {content: content}}));
       this.refs.content.getDOMNode().value = '';
       this.refs.content.getDOMNode().blur();
