@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get 'access_token' => 'tokens#access_token'
 
   resources :blabs, only: [:index, :create]
+
+  match '*all' => 'api#index', via: [:get]
 end

@@ -9,6 +9,10 @@ class ApiController < ActionController::Metal
     render nothing: true
   end
 
+  def index
+    render file: 'public/index.html'
+  end
+
   def current_user
     render json: @current_user.handle
   end
@@ -16,11 +20,16 @@ class ApiController < ActionController::Metal
   private
 
   def render(options={})
-    self.status = options[:status] || 200
-    self.content_type = 'application/json'
-    body = Oj.dump(options[:json], mode: :compat)
-    self.headers['Content-Length'] = body.bytesize.to_s
+    if options[:file]
+      body = File.read(options[:file])
+      self.content_type = "text/html"
+    else
+      body = Oj.dump(options[:json], mode: :compat)
+      self.content_type = 'application/json'
+      self.headers['Content-Length'] = body.bytesize.to_s
+    end
     self.response_body = body
+    self.status = options[:status] || 200
   end
 
   def redirect_to(options={})
