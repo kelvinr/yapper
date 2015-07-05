@@ -8,7 +8,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx$/,
-        loader: 'react-hot!babel'
+        loader: 'babel'
       },
       {
         test: /\.sass$/,
