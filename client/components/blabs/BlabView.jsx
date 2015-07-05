@@ -5,6 +5,7 @@ import BlabForm from './BlabForm';
 export default class BlabView extends React.Component {
   constructor() {
     super();
+    this.writeBlabToAPI = this.writeBlabToAPI.bind(this);
     this.state = {data: []};
   }
   componentDidMount() {
@@ -12,15 +13,15 @@ export default class BlabView extends React.Component {
   }
   readBlabsFromAPI() {
     this.props.readFromAPI(this.props.origin + '/blabs', blabs => {
-      this.setState({data: blabs});
-    }.bind(this));
+      this.setState({data: blabs})
+    });
   }
   writeBlabToAPI(data) {
     this.props.writeToAPI('post', this.props.origin + '/blabs', data, blab => {
-      var blabs = this.state.data;
+      let blabs = this.state.data;
       blabs.unshift(blab);
       this.setState({data: blabs});
-    }.bind(this));
+    });
   }
   render() {
     return (

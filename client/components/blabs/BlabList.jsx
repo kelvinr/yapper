@@ -4,9 +4,8 @@ import Blab from './Blab';
 export default class BlabList extends React.Component {
   render() {
     var blabs = this.props.data.map(blab => {
-      console.log(blab.user);
       return (
-        <Blab key={blab.id} content={blab.content} author={blab.user}/>
+        <Blab key={blab.id} content={blab.content} author={blab.handle}/>
       );
     })
     return (

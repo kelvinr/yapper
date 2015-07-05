@@ -9,11 +9,14 @@ let RouteHandler = Router.RouteHandler;
 export default class App extends React.Component {
   constructor() {
     super();
+    this.currentUserFromAPI = this.currentUserFromAPI.bind(this);
+    this.readFromAPI = this.readFromAPI.bind(this);
+    this.writeToAPI = this.writeToAPI.bind(this);
     this.state = {
       origin: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : '',
       showMenu: false,
       signedIn: false,
-      currentUser: {handle: ''}};
+      currentUser: ''};
   }
   componentWillMount() {
     let jwt = new Uri(location.search).getQueryParamValue('jwt');
@@ -23,9 +26,9 @@ export default class App extends React.Component {
     if (!!sessionStorage.getItem('jwt')) {this.currentUserFromAPI();}
   }
   currentUserFromAPI() {
-    this.readFromAPI(this.state.origin + '/current_user', function(user) {
+    this.readFromAPI(this.state.origin + '/current_user', user => {
       this.setState({signedIn: true, currentUser: user})
-    }.bind(this));
+    });
   }
   handleMenuClick() {
     this.setState({showMenu: !this.state.showMenu});
@@ -61,7 +64,6 @@ export default class App extends React.Component {
   }
   render() {
     let menu = this.state.showMenu ? 'show-menu' : 'hide-menu';
-
     return (
       <div id="app" className={menu}>
         <Menu origin={this.state.origin} sendMenuClick={this.handleMenuClick} signedIn={this.state.signedIn} />

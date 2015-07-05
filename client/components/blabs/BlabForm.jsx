@@ -1,13 +1,13 @@
 import React from 'react';
 
 export default class BlabForm extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.handleSubmit = this.handleSubmit.bind(this); 
   }
   handleSubmit(e) {
     e.preventDefault();
-    var content = this.refs.content.getDOMNode().value.trim();
+    let content = this.refs.content.getDOMNode().value.trim();
     if (!content) {return;}
     if (this.props.signedIn) {
       this.props.writeBlabToAPI(JSON.stringify({blab: {content: content}}));

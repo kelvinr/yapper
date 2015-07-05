@@ -6,6 +6,7 @@ gem 'puma'
 gem 'pg'
 gem 'oauth'
 gem 'jwt'
+gem 'pry'
 
 gem 'oj'
 gem 'oj_mimic_json'

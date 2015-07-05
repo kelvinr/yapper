@@ -1,6 +1,6 @@
 class ApiController < ActionController::Metal
   include AbstractController::Callbacks
-  include ActionController::Redirecting
+  include ActionController::RackDelegation
   include ActionController::StrongParameters
 
   before_action :authenticate_request, only: [:current_user]
@@ -10,7 +10,7 @@ class ApiController < ActionController::Metal
   end
 
   def current_user
-    render json: @current_user, only: [:handle]
+    render json: @current_user.handle
   end
   
   private
@@ -21,6 +21,11 @@ class ApiController < ActionController::Metal
     body = Oj.dump(options[:json], mode: :compat)
     self.headers['Content-Length'] = body.bytesize.to_s
     self.response_body = body
+  end
+
+  def redirect_to(options={})
+    self.location = options[:location] || ENV['ORIGIN']
+    self.status = options[:status] || 302
   end
 
   def authenticate_request
